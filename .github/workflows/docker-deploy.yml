@@ -26,7 +26,7 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          docker pull mock-website  # Optional, if pushing to a registry
+          docker pull mock-website  # Optional if pushing to a registry
           docker stop mock-website || true
           docker rm mock-website || true
           docker run -d -p 80:80 --name mock-website mock-website
