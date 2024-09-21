@@ -30,3 +30,4 @@ jobs:
           docker stop mock-website || true
           docker rm mock-website || true
           docker run -d -p 80:80 --name mock-website mock-website
+        debug: true
