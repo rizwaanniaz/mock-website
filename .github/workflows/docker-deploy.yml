@@ -16,18 +16,13 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
-    - name: Build Docker Image
-      run: docker build -t mock-website .
-
-    - name: Push Docker Image to VM and Deploy
+    - name: Test SSH Connection
       uses: appleboy/ssh-action@v0.1.4
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          docker stop mock-website || true
-          docker rm mock-website || true
-          docker run -d -p 80:80 --name mock-website mock-website
+          echo "SSH connection successful"
+          ls -la
         debug: true
-
